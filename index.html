@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Transformy</title>
+  </head>
+  <body>
+    <div id='root'>
+    </div>
+    <div>
+      <script type="text/javascript">
+        (function() {
+          const script = document.createElement('script');
+          script.src = process.env.ENV === 'development' 
+            ? 'http://localhost:9000/app.js' : './app.js';
+          document.write(script.outerHTML);
+        }());
+      </script>
+    </div>
+  </body>
+</html>
