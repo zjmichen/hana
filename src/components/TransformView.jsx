@@ -1,41 +1,29 @@
 import React, { PropTypes } from 'react';
 
-class TransformView extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { type: props.type || '' };
-    this.setType = this.setType.bind(this);
-  }
+const TransformView = ({title, content, onChange, setType}) => {
+  const editProps = (onChange) ? { onChange } : { readOnly: true };
 
-  setType(event) {
-    this.setState({ type: event.target.value });
-  }
-
-  componentWillReceiveProps(props) {
-    if (props.type) {
-      this.setState({ type: props.type, content: props.content });
-    }
-  }
-
-  render() {
-    return (
-      <div className='transform-view'>
-        <div className='title'>{this.props.title}</div>
-        <select className='select' value={this.state.type} onChange={this.setType}>
-          <option value='' disabled>Select</option>
-          <option value='csv'>CSV</option>
-          <option value='json'>JSON</option>
-        </select>
-        <textarea className='preview' value={this.props.content} onChange={this.props.onChange}></textarea>
-      </div>
-    );
-  }
-}
+  return (
+    <div className='transform-view'>
+      <div className='title'>{title}</div>
+      <select className='select' value={content.type} onChange={(event) => setType(event.target.value)}>
+        <option value='' disabled>Select</option>
+        <option value='csv'>CSV</option>
+        <option value='json'>JSON</option>
+      </select>
+      <textarea className='preview' value={content.data} {...editProps}></textarea>
+    </div>
+  );
+};
 
 TransformView.propTypes = {
   title: PropTypes.string,
-  content: PropTypes.string,
-  type: PropTypes.string
+  content: PropTypes.shape({
+    data: PropTypes.string,
+    type: PropTypes.string
+  }),
+  onChange: PropTypes.func,
+  setType: PropTypes.func.isRequired
 };
 
 export default TransformView;

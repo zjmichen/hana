@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "start": "cross-env ENV=development electron .",
+    "lint": "eslint . --ext=js --ext=jsx",
+    "start": "cross-env ENV=development electron ./app",
     "dev": "concurrently -k \"babel-node server.js\" \"npm start\"",
-    "build": "webpack --progress --colors --config webpack.config.production.js && electron-packager . Transformy --platform=linux --arch=x64 --overwrite --out dist/ && npm run package",
-    "package": "electron-installer-debian --src dist/Transformy-linux-x64/ --dest dist/installers/ --arch amd64"
+    "build:windows": "webpack --progress --colors --config webpack.config.production.js && electron-packager . Transformy --platform=win32 --arch=x64 --overwrite --out dist/",
+    "build:osx": "webpack --progress --colors --config webpack.config.production.js && electron-packager . Transformy --platform=darwin --arch=x64 --overwrite --out dist/",
+    "build:linux": "webpack --progress --colors --config webpack.config.production.js && electron-packager . Transformy --platform=linux --arch=x64 --overwrite --out dist/",
+    "prepackage:debian": "npm -s run build:linux",
+    "package:debian": "electron-installer-debian --src dist/Transformy-linux-x64/ --dest dist/installers/ --arch amd64"
   },
   "babel": {
     "presets": [
@@ -15,7 +19,7 @@
       "react"
     ]
   },
-  "author": "Zack Michener",
+  "author": "Zack Michener <zack@zackmichener.net>",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.9.0",
@@ -28,21 +32,25 @@
     "concurrently": "^2.1.0",
     "cross-env": "^1.0.8",
     "css-loader": "^0.23.1",
+    "debounce": "^1.0.0",
     "electron-installer-debian": "^0.3.0",
     "electron-packager": "^7.0.3",
     "electron-prebuilt": "^1.2.0",
+    "eslint": "^2.11.1",
+    "eslint-plugin-react": "^5.1.1",
     "express": "^4.13.4",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.10.0",
     "webpack-target-electron-renderer": "^0.4.0"
-  },
-  "dependencies": {
-    "csv": "^1.1.0"
   }
 }

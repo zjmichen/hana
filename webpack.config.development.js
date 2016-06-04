@@ -1,7 +1,7 @@
-var webpack = require('webpack');
-var webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
+let webpack = require('webpack');
+let webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
 
-var config = {
+let config = {
   entry: [
     'webpack-hot-middleware/client?reload=true&path=http://localhost:9000/__webpack_hmr',
     './src/index'
@@ -20,8 +20,8 @@ var config = {
     }]
   },
   output: {
-    path: __dirname + '/',
-    publicPath: 'http://localhost:9000/',
+    path: __dirname + '/app',
+    publicPath: 'http://localhost:9000/app/',
     filename: 'app.js'
   },
   resolve: {
@@ -29,7 +29,8 @@ var config = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
-  ]
+  ],
+  devtool: 'source-map'
 };
 
 config.target = webpackTargetElectronRenderer(config);

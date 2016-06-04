@@ -1,0 +1,10 @@
+{
+  "name": "transformy",
+  "version": "1.0.0",
+  "main": "main.js",
+  "author": "Zack Michener <zack@zackmichener.net>",
+  "license": "ISC",
+  "dependencies": {
+    "csv": "^1.1.0"
+  }
+}
