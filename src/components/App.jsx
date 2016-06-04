@@ -18,6 +18,7 @@ export default class App extends React.Component {
     this.transform = this.transform.bind(this);
     this.chooseFile = this.chooseFile.bind(this);
     this.loadFile = this.loadFile.bind(this);
+    this.updateInput = this.updateInput.bind(this);
   }
 
   transform() {
@@ -65,6 +66,15 @@ export default class App extends React.Component {
     });
   }
 
+  updateInput(event) {
+    this.setState({
+      input: {
+        ...this.state.input,
+        data: event.target.value
+      }
+    });
+  }
+
   render() {
     return (
       <div className='app-layout'>
@@ -73,11 +83,18 @@ export default class App extends React.Component {
           <span className='filename'>{this.state.input.name}</span>
         </div>
         <div className='double-transform'>
-          <TransformView ref='before' title='Before' content={this.state.input.data} type={this.state.input.type} />
+          <TransformView ref='before' title='Before'
+            content={this.state.input.data}
+            type={this.state.input.type}
+            onChange={this.updateInput} />
+
           <div className='divider'>
             <button onClick={this.transform}>🗲</button>
           </div>
-          <TransformView ref='after' title='After' content={this.state.output} type='json' />
+          <TransformView ref='after' title='After'
+            content={this.state.output}
+            type='json' />
+
         </div>
       </div>
     );

@@ -13,7 +13,7 @@ class TransformView extends React.Component {
 
   componentWillReceiveProps(props) {
     if (props.type) {
-      this.setState({ type: props.type });
+      this.setState({ type: props.type, content: props.content });
     }
   }
 
@@ -26,7 +26,7 @@ class TransformView extends React.Component {
           <option value='csv'>CSV</option>
           <option value='json'>JSON</option>
         </select>
-        <textarea className='preview' value={this.props.content}></textarea>
+        <textarea className='preview' value={this.props.content} onChange={this.props.onChange}></textarea>
       </div>
     );
   }
