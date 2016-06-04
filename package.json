@@ -5,7 +5,8 @@
   "scripts": {
     "start": "cross-env ENV=development electron .",
     "dev": "concurrently -k \"babel-node server.js\" \"npm start\"",
-    "build": "webpack --progress --colors --config webpack.config.production.js && electron-packager . Transformy --platform=win32 --arch=all --overwrite"
+    "build": "webpack --progress --colors --config webpack.config.production.js && electron-packager . Transformy --platform=linux --arch=x64 --overwrite --out dist/ && npm run package",
+    "package": "electron-installer-debian --src dist/Transformy-linux-x64/ --dest dist/installers/ --arch amd64"
   },
   "babel": {
     "presets": [
@@ -27,6 +28,7 @@
     "concurrently": "^2.1.0",
     "cross-env": "^1.0.8",
     "css-loader": "^0.23.1",
+    "electron-installer-debian": "^0.3.0",
     "electron-packager": "^7.0.3",
     "electron-prebuilt": "^1.2.0",
     "express": "^4.13.4",

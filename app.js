@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "./";
+/******/ 	__webpack_require__.p = "./dist";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -20183,6 +20183,8 @@
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(5);
@@ -20228,6 +20230,7 @@
 	    _this.transform = _this.transform.bind(_this);
 	    _this.chooseFile = _this.chooseFile.bind(_this);
 	    _this.loadFile = _this.loadFile.bind(_this);
+	    _this.updateInput = _this.updateInput.bind(_this);
 	    return _this;
 	  }
 
@@ -20286,6 +20289,15 @@
 	      });
 	    }
 	  }, {
+	    key: 'updateInput',
+	    value: function updateInput(event) {
+	      this.setState({
+	        input: _extends({}, this.state.input, {
+	          data: event.target.value
+	        })
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -20308,7 +20320,10 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'double-transform' },
-	          _react2.default.createElement(_TransformView2.default, { ref: 'before', title: 'Before', content: this.state.input.data, type: this.state.input.type }),
+	          _react2.default.createElement(_TransformView2.default, { ref: 'before', title: 'Before',
+	            content: this.state.input.data,
+	            type: this.state.input.type,
+	            onChange: this.updateInput }),
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'divider' },
@@ -20318,7 +20333,9 @@
 	              '🗲'
 	            )
 	          ),
-	          _react2.default.createElement(_TransformView2.default, { ref: 'after', title: 'After', content: this.state.output, type: 'json' })
+	          _react2.default.createElement(_TransformView2.default, { ref: 'after', title: 'After',
+	            content: this.state.output,
+	            type: 'json' })
 	        )
 	      );
 	    }
@@ -20375,7 +20392,7 @@
 	    key: 'componentWillReceiveProps',
 	    value: function componentWillReceiveProps(props) {
 	      if (props.type) {
-	        this.setState({ type: props.type });
+	        this.setState({ type: props.type, content: props.content });
 	      }
 	    }
 	  }, {
@@ -20408,7 +20425,7 @@
 	            'JSON'
 	          )
 	        ),
-	        _react2.default.createElement('textarea', { className: 'preview', value: this.props.content })
+	        _react2.default.createElement('textarea', { className: 'preview', value: this.props.content, onChange: this.props.onChange })
 	      );
 	    }
 	  }]);

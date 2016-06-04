@@ -10,7 +10,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({width: 800, height: 600});
   mainWindow.setMenu(null);
   mainWindow.loadURL(`file://${__dirname}/index.html`);
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
