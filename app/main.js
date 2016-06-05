@@ -1,9 +1,12 @@
 const electron = require('electron');
 const fs = require('fs');
 const path = require('path');
+const debounce = require('debounce');
+const watch = require('watch');
 const ipcMain = electron.ipcMain;
 const dialog = electron.dialog;
 const nativeImage = electron.nativeImage;
+const shell = electron.shell;
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
@@ -75,7 +78,7 @@ function loadPlugin(type) {
   return new Promise((resolve, reject) => {
     const pluginFolder = (process.env.ENV === 'development')
       ? path.resolve('./build/plugins')
-      : app.getPath('userData');
+      : app.getPath('userData') + path.sep + 'plugins';
 
     const plugin = require(`${pluginFolder}/${type}`);
     if (!plugin) reject(`No loader found for ${type}`);
@@ -103,7 +106,7 @@ ipcMain.on('addplugin', (event) => {
 
   const pluginFolder = (process.env.ENV === 'development')
     ? path.resolve('./build/plugins')
-    : app.getPath('userData');
+    : app.getPath('userData') + path.sep + 'plugins';
 
   const destFile = pluginFolder + path.sep + path.basename(sourceFile);
   copyFile(sourceFile, destFile).then(() => {
@@ -113,6 +116,37 @@ ipcMain.on('addplugin', (event) => {
       outputTypes: plugin.outputTypes
     });
   });
+});
+
+ipcMain.on('createplugin', (event) => {
+  const appFolder = (process.env.ENV === 'development')
+    ? path.resolve('./build')
+    : app.getPath('userData');
+  const pluginFolder = appFolder + path.sep + 'plugins';
+
+  const pluginTemplate = appFolder + path.sep + 'template.js';
+  const newPlugin = pluginFolder + path.sep + 'new_plugin.js';
+
+  copyFile(pluginTemplate, newPlugin)
+    .then(() => {
+      watch.createMonitor(pluginFolder, (monitor) => {
+        monitor.on('created', (file) => {
+          monitor.stop();
+          const plugin = require(file);
+          if (!validPlugin(plugin)) return;
+
+          debounce(() => {
+            event.sender.send('createplugin', {
+              name: plugin.name,
+              type: path.basename(file, '.js'),
+              outputTypes: plugin.outputTypes
+            });
+          })();
+        });
+      });
+      shell.openItem(newPlugin);
+      setTimeout(() => fs.unlink(newPlugin), 500);
+    });
 });
 
 function validPlugin(plugin) {
@@ -140,7 +174,7 @@ function copyFile(source, dest) {
 ipcMain.on('getplugins', (event) => {
   const pluginFolder = (process.env.ENV === 'development')
     ? path.resolve('./build/plugins')
-    : app.getPath('userData');
+    : app.getPath('userData') + path.sep + 'plugins';
 
   let plugins = [];
   fs.readdir(pluginFolder, (err, files) => {

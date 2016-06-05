@@ -28,6 +28,13 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(addPlugin(plugin));
       });
       ipc.send('addplugin');
+    },
+    createPlugin: () => {
+      ipc.on('createplugin', (event, plugin) => {
+        console.log(plugin);
+        dispatch(addPlugin(plugin));
+      });
+      ipc.send('createplugin');
     }
   };
 };

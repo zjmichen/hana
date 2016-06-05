@@ -12,6 +12,7 @@ class App extends React.Component {
     this.updateInput = this.updateInput.bind(this);
     this.transform = this.transform.bind(this);
     this.addPlugin = this.addPlugin.bind(this);
+    this.createPlugin = this.createPlugin.bind(this);
   }
 
   chooseFile() {
@@ -39,6 +40,10 @@ class App extends React.Component {
     this.props.addPlugin();
   }
 
+  createPlugin() {
+    this.props.createPlugin();
+  }
+
   updateInput(event) {
     this.props.setInput({
       ...this.props.input,
@@ -60,7 +65,11 @@ class App extends React.Component {
           </button>
           <button className='tool-button' onClick={this.addPlugin}>
             <i className='icon fa fa-plus-square-o'></i>
-            <span className='label'>Add plugin</span>
+            <span className='label'>Import plugin</span>
+          </button>
+          <button className='tool-button' onClick={this.createPlugin}>
+            <i className='icon fa fa-code'></i>
+            <span className='label'>Create plugin</span>
           </button>
         </div>
         <div className='double-transform'>
