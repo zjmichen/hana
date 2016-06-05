@@ -1,10 +1,17 @@
 {
   "name": "transformy",
   "version": "1.0.0",
-  "main": "main.js",
   "author": "Zack Michener <zack@zackmichener.net>",
+  "description": "Transform arbitrary text files",
   "license": "ISC",
+  "homepage": "http://www.zackmichener.net",
+  "main": "main.js",
   "dependencies": {
     "csv": "^1.1.0"
+  },
+  "build": {
+    "app-bundle-id": "com.zackmichener.transformy",
+    "app-category-type": "public.app-category.utilities",
+    "extraFiles": "build/plugins"
   }
 }

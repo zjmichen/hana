@@ -17,7 +17,7 @@
         (function() {
           const script = document.createElement('script');
           script.src = process.env.ENV === 'development' 
-            ? 'http://localhost:9000/app/app.js' : './app/app.js';
+            ? 'http://localhost:9000/app/app.js' : './app.js';
           document.write(script.outerHTML);
         }());
       </script>

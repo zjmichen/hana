@@ -72,7 +72,7 @@ function transform(fromType, toType, data) {
 function loadPlugin(type) {
   return new Promise((resolve, reject) => {
     const pluginFolder = (process.env.ENV === 'development')
-      ? './plugins'
+      ? '../build/plugins'
       : app.getPath('userData');
 
     const plugin = require(`${pluginFolder}/${type}`);

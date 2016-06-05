@@ -1,16 +1,25 @@
 {
   "name": "transformy",
   "version": "1.0.0",
+  "description": "Transform arbitrary text files",
+  "author": "Zack Michener <zack@zackmichener.net>",
   "main": "main.js",
   "scripts": {
     "lint": "eslint . --ext=js --ext=jsx",
     "start": "cross-env ENV=development electron ./app",
     "dev": "concurrently -k \"babel-node server.js\" \"npm start\"",
+    "postinstall": "install-app-deps",
+    "pack": "build --target dir",
+    "dist": "build",
     "build:windows": "webpack --progress --colors --config webpack.config.production.js && electron-packager . Transformy --platform=win32 --arch=x64 --overwrite --out dist/",
     "build:osx": "webpack --progress --colors --config webpack.config.production.js && electron-packager . Transformy --platform=darwin --arch=x64 --overwrite --out dist/",
     "build:linux": "webpack --progress --colors --config webpack.config.production.js && electron-packager . Transformy --platform=linux --arch=x64 --overwrite --out dist/",
     "prepackage:debian": "npm -s run build:linux",
     "package:debian": "electron-installer-debian --src dist/Transformy-linux-x64/ --dest dist/installers/ --arch amd64"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zjmichen/transformy.git"
   },
   "babel": {
     "presets": [
@@ -19,7 +28,6 @@
       "react"
     ]
   },
-  "author": "Zack Michener <zack@zackmichener.net>",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.9.0",
@@ -33,6 +41,7 @@
     "cross-env": "^1.0.8",
     "css-loader": "^0.23.1",
     "debounce": "^1.0.0",
+    "electron-complete-builder": "^0.7.0",
     "electron-installer-debian": "^0.3.0",
     "electron-packager": "^7.0.3",
     "electron-prebuilt": "^1.2.0",
