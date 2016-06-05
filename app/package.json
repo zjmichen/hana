@@ -1,10 +1,14 @@
 {
-  "name": "transformy",
+  "name": "hana",
   "version": "1.0.0",
   "author": "Zack Michener <zack@zackmichener.net>",
   "description": "Transform arbitrary text files",
   "license": "ISC",
   "homepage": "http://www.zackmichener.net",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zjmichen/hana.git"
+  },
   "main": "main.js",
   "dependencies": {
     "csv": "^1.1.0",
@@ -12,8 +16,12 @@
     "watch": "^0.18.0"
   },
   "build": {
-    "app-bundle-id": "com.zackmichener.transformy",
+    "app-bundle-id": "com.zackmichener.hana",
     "app-category-type": "public.app-category.utilities",
-    "extraFiles": "build/plugins"
+    "extraFiles": "build/plugins",
+    "win": {
+      "iconUrl": "https://github.com/${u}/${p}/blob/master/build/icon.ico?raw=true"
+    },
+    "asar": true
   }
 }
