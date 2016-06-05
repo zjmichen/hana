@@ -4,8 +4,9 @@ import AppContainer from './containers/AppContainer';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import { ipcRenderer as ipc } from 'electron';
 import reducers from './reducers';
-import { reset } from './actions';
+import { reset, setPlugins } from './actions';
 import cache from './lib/cache';
 import initialState from './initialState';
 
@@ -16,6 +17,11 @@ if (store.getState().settings.hotExit) {
 } else {
   cache.clear();
 }
+
+ipc.on('getplugins', (event, plugins) => {
+  store.dispatch(setPlugins(plugins));
+});
+ipc.send('getplugins');
 
 document.addEventListener('DOMContentLoaded', () => {
   render((

@@ -1,4 +1,6 @@
 const electron = require('electron');
+const fs = require('fs');
+const path = require('path');
 const ipcMain = electron.ipcMain;
 const dialog = electron.dialog;
 const nativeImage = electron.nativeImage;
@@ -72,12 +74,91 @@ function transform(fromType, toType, data) {
 function loadPlugin(type) {
   return new Promise((resolve, reject) => {
     const pluginFolder = (process.env.ENV === 'development')
-      ? '../build/plugins'
+      ? path.resolve('./build/plugins')
       : app.getPath('userData');
 
     const plugin = require(`${pluginFolder}/${type}`);
     if (!plugin) reject(`No loader found for ${type}`);
-    if (!plugin.deserialize || !plugin.serialize) reject(`Invalid loader for ${type}`);
     resolve(plugin);
   });
 }
+
+ipcMain.on('addplugin', (event) => {
+  const files = dialog.showOpenDialog({
+    title: 'Add Plugin',
+    filters: [{
+      name: 'Javascript Files',
+      extensions: ['js']
+    }]
+  });
+
+  if (!files || files.length === 0) return;
+  const sourceFile = files[0];
+  const plugin = require(sourceFile);
+
+  if (!validPlugin(plugin)) {
+    event.sender.send('addplugin_error', new Error('Invalid plugin'));
+    return;
+  }
+
+  const pluginFolder = (process.env.ENV === 'development')
+    ? path.resolve('./build/plugins')
+    : app.getPath('userData');
+
+  const destFile = pluginFolder + path.sep + path.basename(sourceFile);
+  copyFile(sourceFile, destFile).then(() => {
+    event.sender.send('addplugin', {
+      name: plugin.name,
+      type: path.basename(sourceFile, '.js'),
+      outputTypes: plugin.outputTypes
+    });
+  });
+});
+
+function validPlugin(plugin) {
+  if (!plugin.name) return false;
+  if (!plugin.outputTypes) return false;
+  if (!Array.isArray(plugin.outputTypes)) return false;
+  const validOutputs = plugin.outputTypes.filter((type) =>
+    plugin.hasOwnProperty(`to_${type.type}`));
+  if (validOutputs.length === 0) return false;
+
+  return true;
+}
+
+function copyFile(source, dest) {
+  return new Promise((resolve, reject) => {
+    const read = fs.createReadStream(source);
+    const write = fs.createWriteStream(dest);
+    read.on('error', reject);
+    write.on('error', reject);
+    write.on('finish', resolve);
+    read.pipe(write);
+  });
+}
+
+ipcMain.on('getplugins', (event) => {
+  const pluginFolder = (process.env.ENV === 'development')
+    ? path.resolve('./build/plugins')
+    : app.getPath('userData');
+
+  let plugins = [];
+  fs.readdir(pluginFolder, (err, files) => {
+    files = files || [];
+    files.forEach((file) => {
+      if (path.extname(file) !== '.js') return;
+
+      const plugin = require(`${pluginFolder}/${file}`);
+      if (!plugin.outputTypes) return;
+
+      plugins.push({
+        name: plugin.name || path.basename(file, '.js'),
+        type: path.basename(file, '.js'),
+        outputTypes: plugin.outputTypes.filter((type) =>
+          plugin.hasOwnProperty(`to_${type.type}`))
+      });
+    });
+
+    event.sender.send('getplugins', plugins);
+  });
+});

@@ -1,4 +1,12 @@
-import { TRANSFORM, SET_INPUT, SET_INPUT_TYPE, SET_OUTPUT_TYPE, RESET } from '../actions';
+import {
+  TRANSFORM,
+  SET_INPUT, 
+  SET_INPUT_TYPE, 
+  SET_OUTPUT_TYPE, 
+  RESET,
+  ADD_PLUGIN, 
+  SET_PLUGINS 
+} from '../actions';
 
 export default (state, action) => {
   switch(action.type) {
@@ -7,6 +15,7 @@ export default (state, action) => {
       ...state,
       input: action.input
     };
+  
   case TRANSFORM:
     return {
       ...state,
@@ -15,6 +24,7 @@ export default (state, action) => {
         data: action.data
       }
     };
+  
   case SET_INPUT_TYPE:
     return {
       ...state,
@@ -23,6 +33,7 @@ export default (state, action) => {
         type: action.datatype
       }
     };
+  
   case SET_OUTPUT_TYPE:
     return {
       ...state,
@@ -31,8 +42,25 @@ export default (state, action) => {
         type: action.datatype
       }
     };
+  
   case RESET:
     return action.state;
+  
+  case ADD_PLUGIN:
+    return {
+      ...state,
+      plugins: [
+        ...state.plugins,
+        action.plugin
+      ]
+    };
+  
+  case SET_PLUGINS:
+    return {
+      ...state,
+      plugins: action.plugins
+    };
+
   default:
     return state;
   }

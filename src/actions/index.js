@@ -5,6 +5,8 @@ export const SET_INPUT = 'SET_INPUT';
 export const SET_INPUT_TYPE = 'SET_INPUT_TYPE';
 export const SET_OUTPUT_TYPE = 'SET_OUTPUT_TYPE';
 export const RESET = 'RESET';
+export const ADD_PLUGIN = 'ADD_PLUGIN';
+export const SET_PLUGINS = 'SET_PLUGINS';
 
 export function transform(fromType, toType, data) {
   return (dispatch) => {
@@ -32,4 +34,12 @@ export function setOutputType(datatype) {
 
 export function reset(state) {
   return { type: RESET, state };
+}
+
+export function addPlugin(plugin) {
+  return { type: ADD_PLUGIN, plugin };
+}
+
+export function setPlugins(plugins) {
+  return { type: SET_PLUGINS, plugins };
 }

@@ -11,6 +11,7 @@ class App extends React.Component {
     this.loadFile = this.loadFile.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.transform = this.transform.bind(this);
+    this.addPlugin = this.addPlugin.bind(this);
   }
 
   chooseFile() {
@@ -34,6 +35,10 @@ class App extends React.Component {
     });
   }
 
+  addPlugin() {
+    this.props.addPlugin();
+  }
+
   updateInput(event) {
     this.props.setInput({
       ...this.props.input,
@@ -53,10 +58,15 @@ class App extends React.Component {
             <i className='icon fa fa-folder-open'></i>
             <span className='label'>Load file</span>
           </button>
+          <button className='tool-button' onClick={this.addPlugin}>
+            <i className='icon fa fa-plus-square-o'></i>
+            <span className='label'>Add plugin</span>
+          </button>
         </div>
         <div className='double-transform'>
           <TransformView title='Before'
             content={this.props.input}
+            types={this.props.plugins}
             onChange={this.updateInput}
             setType={this.props.setInputType} />
 
@@ -65,6 +75,7 @@ class App extends React.Component {
           </div>
           <TransformView title='After'
             content={this.props.output}
+            types={this.props.outputTypes}
             setType={this.props.setOutputType} />
 
         </div>

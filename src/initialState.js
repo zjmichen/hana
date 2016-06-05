@@ -1,4 +1,5 @@
 export default {
+  plugins: [],
   input: {
     name: '',
     type: '',
