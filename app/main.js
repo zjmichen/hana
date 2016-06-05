@@ -46,7 +46,7 @@ ipcMain.on('choosefile', (event) => {
 ipcMain.on('transform', (event, options) => {
   transform(options.fromType, options.toType, options.data)
     .then((output) => event.sender.send('transform', output))
-    .catch((error) => event.sender.send('error', error.message || error));
+    .catch((error) => event.sender.send('transform_error', error.message || error));
 });
 
 function transform(fromType, toType, data) {

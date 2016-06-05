@@ -12,5 +12,6 @@ export default {
   },
   settings: {
     hotExit: true
-  }
+  },
+  transformError: ''
 };

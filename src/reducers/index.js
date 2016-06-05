@@ -1,5 +1,6 @@
 import {
   TRANSFORM,
+  SET_ERROR,
   SET_INPUT, 
   SET_INPUT_TYPE, 
   SET_OUTPUT_TYPE, 
@@ -22,7 +23,14 @@ export default (state, action) => {
       output: {
         ...state.output,
         data: action.data
-      }
+      },
+      transformError: ''
+    };
+
+  case SET_ERROR:
+    return {
+      ...state,
+      transformError: action.error
     };
   
   case SET_INPUT_TYPE:

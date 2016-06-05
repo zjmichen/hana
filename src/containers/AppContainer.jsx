@@ -12,7 +12,8 @@ const mapStateToProps = (state) => {
     input: state.input,
     output: state.output,
     plugins: state.plugins,
-    outputTypes: outputTypes
+    outputTypes: outputTypes,
+    errorMsg: state.transformError
   };
 };
 

@@ -1,6 +1,7 @@
 import { ipcRenderer as ipc } from 'electron';
 
 export const TRANSFORM = 'TRANSFORM';
+export const SET_ERROR = 'SET_ERROR';
 export const SET_INPUT = 'SET_INPUT';
 export const SET_INPUT_TYPE = 'SET_INPUT_TYPE';
 export const SET_OUTPUT_TYPE = 'SET_OUTPUT_TYPE';
@@ -13,8 +14,8 @@ export function transform(fromType, toType, data) {
     ipc.on('transform', (event, data) => {
       dispatch({ type: TRANSFORM, data });
     });
-    ipc.on('error', (event, error) => {
-      throw new Error(error.message || error.code || error);
+    ipc.on('transform_error', (event, error) => {
+      dispatch({ type: SET_ERROR, error: error.message || error.code || error });
     });
     ipc.send('transform', {fromType, toType, data});
   };
