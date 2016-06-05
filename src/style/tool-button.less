@@ -1,0 +1,32 @@
+.tool-button {
+  display: inline-block;
+  text-align: center;
+  margin:  8px;
+  padding: 8px;
+  border: none;
+  background: none;
+  outline: none;
+  border-radius: 4px;
+  border: 1px solid transparent;
+
+  &:hover {
+    border: 1px solid #aaa;
+    cursor: pointer;
+  }
+
+  &:active {
+    background: linear-gradient(#fff, #aaa);
+  }
+
+  > .icon {
+    display: block;
+    font-size: 2em;
+  }
+
+  > .label {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #444;
+    font-size: 0.7em;
+  }
+}

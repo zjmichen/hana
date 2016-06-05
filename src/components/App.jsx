@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import TransformView from './TransformView';
 import { ipcRenderer } from 'electron';
 import fs from 'fs';
-import debounce from 'debounce';
 import '../style/app-layout.less';
 
 class App extends React.Component {
@@ -49,9 +48,11 @@ class App extends React.Component {
   render() {
     return (
       <div className='app-layout'>
-        <div className='input'>
-          <button onClick={this.chooseFile}>Choose file</button>
-          <span className='filename'>{this.props.input.name}</span>
+        <div className='tool-bar'>
+          <button className='tool-button' onClick={this.chooseFile}>
+            <i className='icon fa fa-folder-open'></i>
+            <span className='label'>Load file</span>
+          </button>
         </div>
         <div className='double-transform'>
           <TransformView title='Before'
