@@ -17,10 +17,10 @@ if (store.getState().settings.hotExit) {
   cache.clear();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  render((
-    <Provider store={store}>
-      <AppContainer />
-    </Provider>
-  ), document.getElementById('root'));
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//   render((
+//     <Provider store={store}>
+//       <AppContainer />
+//     </Provider>
+//   ), document.getElementById('root'));
+// });
