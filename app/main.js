@@ -1,13 +1,16 @@
 const electron = require('electron');
 const ipcMain = electron.ipcMain;
 const dialog = electron.dialog;
+const nativeImage = electron.nativeImage;
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
 let mainWindow;
 
 function createWindow () {
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+  const icon = nativeImage.createFromPath('images/app_icon.png');
+  mainWindow = new BrowserWindow({width: 900, height: 600});
+  mainWindow.setIcon(icon);
   mainWindow.setMenu(null);
   mainWindow.loadURL(`file://${__dirname}/index.html`);
   mainWindow.on('closed', function () {

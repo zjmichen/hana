@@ -12,13 +12,14 @@ body, html, #root {
   justify-content: center;
   align-items: center;
   background: #eee;
+  animation: fadeIn 500ms;
 }
 
-.preload .icon {
-  font-size: 5em;
-}
-
-.preload progress {
-  width: 500px;
-  height: 20px;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
