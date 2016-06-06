@@ -22,7 +22,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
 
       /* pass an error to `reject` if the input can't be transformed */
-      if (typeof inputText !== String) reject(new Error('Invalid input'));
+      if (inputText === 'this will be rejected') reject(new Error('Invalid input'));
 
       /* pass a string to `resolve` to return the output text */
       resolve(JSON.stringify({}));

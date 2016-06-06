@@ -10,6 +10,8 @@ const shell = electron.shell;
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
+console.log(app.getAppPath());
+
 let mainWindow;
 
 function createWindow () {
@@ -76,9 +78,7 @@ function transform(fromType, toType, data) {
 
 function loadPlugin(type) {
   return new Promise((resolve, reject) => {
-    const pluginFolder = (process.env.ENV === 'development')
-      ? path.resolve('./build/plugins')
-      : app.getPath('userData') + path.sep + 'plugins';
+    const pluginFolder = getPluginFolder();
 
     const plugin = require(`${pluginFolder}/${type}`);
     if (!plugin) reject(`No loader found for ${type}`);
@@ -104,9 +104,7 @@ ipcMain.on('addplugin', (event) => {
     return;
   }
 
-  const pluginFolder = (process.env.ENV === 'development')
-    ? path.resolve('./build/plugins')
-    : app.getPath('userData') + path.sep + 'plugins';
+  const pluginFolder = getPluginFolder();
 
   const destFile = pluginFolder + path.sep + path.basename(sourceFile);
   copyFile(sourceFile, destFile).then(() => {
@@ -120,9 +118,9 @@ ipcMain.on('addplugin', (event) => {
 
 ipcMain.on('createplugin', (event) => {
   const appFolder = (process.env.ENV === 'development')
-    ? path.resolve('./build')
-    : app.getPath('userData');
-  const pluginFolder = appFolder + path.sep + 'plugins';
+    ? path.resolve('./')
+    : app.getAppPath();
+  const pluginFolder = getPluginFolder();
 
   const pluginTemplate = appFolder + path.sep + 'template.js';
   const newPlugin = pluginFolder + path.sep + 'new_plugin.js';
@@ -172,27 +170,42 @@ function copyFile(source, dest) {
 }
 
 ipcMain.on('getplugins', (event) => {
-  const pluginFolder = (process.env.ENV === 'development')
-    ? path.resolve('./build/plugins')
-    : app.getPath('userData') + path.sep + 'plugins';
+  const pluginFolder = getPluginFolder();
 
-  let plugins = [];
-  fs.readdir(pluginFolder, (err, files) => {
-    files = files || [];
-    files.forEach((file) => {
-      if (path.extname(file) !== '.js') return;
-
-      const plugin = require(`${pluginFolder}/${file}`);
-      if (!plugin.outputTypes) return;
-
-      plugins.push({
-        name: plugin.name || path.basename(file, '.js'),
-        type: path.basename(file, '.js'),
-        outputTypes: plugin.outputTypes.filter((type) =>
-          plugin.hasOwnProperty(`to_${type.type}`))
-      });
+  loadPlugins(pluginFolder)
+    .then((plugins) => {
+      event.sender.send('getplugins', plugins);
     });
-
-    event.sender.send('getplugins', plugins);
-  });
 });
+
+function loadPlugins(pluginFolder) {
+  return new Promise((resolve, reject) => {
+    let plugins = [];
+    fs.readdir(pluginFolder, (err, files) => {
+      if (err) reject(err);
+      files = files || [];
+      files.forEach((file) => {
+        if (path.extname(file) !== '.js') return;
+
+        const plugin = require(`${pluginFolder}/${file}`);
+        if (!plugin.outputTypes) return;
+
+        plugins.push({
+          name: plugin.name || path.basename(file, '.js'),
+          type: path.basename(file, '.js'),
+          outputTypes: plugin.outputTypes.filter((type) =>
+            plugin.hasOwnProperty(`to_${type.type}`))
+        });
+      });
+      resolve(plugins);
+    });
+  });
+}
+
+function getPluginFolder(user) {
+  return (process.env.ENV === 'development')
+    ? path.resolve('./plugins')
+    : user
+      ? app.getPath('userData') + path.sep + 'plugins'
+      : app.getAppPath() + path.sep + 'plugins';
+}

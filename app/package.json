@@ -18,10 +18,10 @@
   "build": {
     "app-bundle-id": "com.zackmichener.hana",
     "app-category-type": "public.app-category.utilities",
-    "extraFiles": "build/plugins",
     "win": {
       "iconUrl": "https://github.com/${u}/${p}/blob/master/build/icon.ico?raw=true"
     },
-    "asar": true
+    "compression": "store",
+    "asar": false
   }
 }
