@@ -12,6 +12,7 @@ export const SET_PLUGINS = 'SET_PLUGINS';
 export function transform(fromType, toType, data) {
   return (dispatch) => {
     ipc.on('transform', (event, data) => {
+      console.log(data);
       dispatch({ type: TRANSFORM, data });
     });
     ipc.on('transform_error', (event, error) => {

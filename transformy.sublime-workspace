@@ -56,83 +56,59 @@
 	"buffers":
 	[
 		{
-			"file": "src/components/App.jsx",
-			"settings":
-			{
-				"buffer_size": 2292,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/index.jsx",
-			"settings":
-			{
-				"buffer_size": 821,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/style/double-transform.less",
-			"settings":
-			{
-				"buffer_size": 257,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/style/base.less",
-			"settings":
-			{
-				"buffer_size": 149,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/style/app-layout.less",
-			"settings":
-			{
-				"buffer_size": 171,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/style/tool-bar.less",
-			"settings":
-			{
-				"buffer_size": 135,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/style/tool-button.less",
-			"settings":
-			{
-				"buffer_size": 500,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/index.html",
-			"settings":
-			{
-				"buffer_size": 753,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "app/main.js",
 			"settings":
 			{
-				"buffer_size": 2238,
-				"line_ending": "Unix"
+				"buffer_size": 5705,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/style/preload.css",
+			"file": "app/plugins/givingpledge_state.js",
 			"settings":
 			{
-				"buffer_size": 304,
-				"line_ending": "Unix"
+				"buffer_size": 427,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/containers/AppContainer.jsx",
+			"settings":
+			{
+				"buffer_size": 1416,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/actions/index.js",
+			"settings":
+			{
+				"buffer_size": 1249,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/initialState.js",
+			"settings":
+			{
+				"buffer_size": 208,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/components/App.jsx",
+			"settings":
+			{
+				"buffer_size": 3021,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/components/TransformView.jsx",
+			"settings":
+			{
+				"buffer_size": 1291,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -143,10 +119,18 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "lint",
+		"height": 104.0,
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"form",
+				"Format: Javascript"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
 			[
 				"lint",
 				"SublimeLinter: Show All Errors"
@@ -192,11 +176,11 @@
 				"Set Syntax: Jade"
 			]
 		],
-		"width": 476.0
+		"width": 424.0
 	},
 	"console":
 	{
-		"height": 139.0,
+		"height": 351.0,
 		"history":
 		[
 			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
@@ -213,16 +197,34 @@
 	},
 	"expanded_folders":
 	[
-		"/home/zack/Projects/transformy",
-		"/home/zack/Projects/transformy/app",
-		"/home/zack/Projects/transformy/app/plugins",
-		"/home/zack/Projects/transformy/app/plugins/csv",
-		"/home/zack/Projects/transformy/src",
-		"/home/zack/Projects/transformy/src/containers",
-		"/home/zack/Projects/transformy/src/lib"
+		"/C/Users/zack/Documents/GitHub/hana",
+		"/C/Users/zack/Documents/GitHub/hana/app",
+		"/C/Users/zack/Documents/GitHub/hana/src",
+		"/C/Users/zack/Documents/GitHub/hana/src/components",
+		"/C/Users/zack/Documents/GitHub/hana/src/containers"
 	],
 	"file_history":
 	[
+		"/C/Users/zack/Desktop/areas.csv",
+		"/C/Users/zack/Documents/GitHub/hana/app/images/rose.svg",
+		"/C/Users/zack/Desktop/initialState.js",
+		"/C/Users/zack/Desktop/givingpledge_state.js",
+		"/C/Users/zack/Documents/GitHub/hana/app/plugins/new_plugin.js",
+		"/C/Users/zack/Documents/GitHub/hana/package.json",
+		"/C/Users/zack/Documents/GitHub/hana/app/package.json",
+		"/C/Users/zack/Documents/GitHub/hana/app/template.js",
+		"/C/Users/zack/Documents/GitHub/hana/app/style/preload.css",
+		"/C/Users/zack/Documents/GitHub/hana/app/plugins/csv_with_headers.js",
+		"/C/Users/zack/Documents/GitHub/hana/src/components/App.jsx",
+		"/C/Users/zack/Documents/GitHub/hana/app/main.js",
+		"/C/Users/zack/Documents/GitHub/hana/app/index.html",
+		"/C/Users/zack/Documents/GitHub/hana/src/style/tool-button.less",
+		"/C/Users/zack/Documents/GitHub/hana/src/style/tool-bar.less",
+		"/C/Users/zack/Documents/GitHub/hana/src/style/app-layout.less",
+		"/C/Users/zack/Documents/GitHub/hana/src/style/base.less",
+		"/C/Users/zack/Documents/GitHub/hana/src/style/double-transform.less",
+		"/C/Users/zack/Documents/GitHub/hana/src/index.jsx",
+		"/C/Users/zack/Documents/GitHub/hana/src/style/transform-view.less",
 		"/home/zack/Projects/transformy/webpack.config.development.js",
 		"/home/zack/Dropbox/neuron/perceptron.rs",
 		"/home/zack/Projects/transformy/app/plugins/csv/index.js",
@@ -330,31 +332,11 @@
 		"/home/zack/Projects/GivingPledge/css/src/tile-grid.less",
 		"/home/zack/Projects/GivingPledge/js/src/components/NameSelector.jsx",
 		"/home/zack/Projects/GivingPledge/js/src/components/ThanksPage.jsx",
-		"/home/zack/Projects/GivingPledge/js/src/components/TileGrid.jsx",
-		"/home/zack/Projects/GivingPledge/js/src/easing.js",
-		"/home/zack/Projects/GivingPledge/js/src/components/RegisterLayout.jsx",
-		"/home/zack/Projects/GivingPledge/README.md",
-		"/home/zack/Desktop/GivingPledge/js/src/easing.js",
-		"/home/zack/Desktop/GivingPledge/js/src/components/NameSelector.jsx",
-		"/home/zack/Desktop/GivingPledge/webpack.config.js",
-		"/home/zack/Desktop/GivingPledge/js/src/components/NameIntroPage.jsx",
-		"/home/zack/Desktop/GivingPledge/js/src/components/NamePage.jsx",
-		"/home/zack/Desktop/GivingPledge/js/src/containers/NamePageContainer.jsx",
-		"/home/zack/Desktop/GivingPledge/package.json",
-		"/home/zack/Desktop/GivingPledge/js/src/main.jsx",
-		"/home/zack/Desktop/GivingPledge/js/src/containers/NameSelectorContainer.jsx",
-		"/home/zack/Desktop/GivingPledge/gulpfile.js",
-		"/home/zack/Desktop/GivingPledge/index.html",
-		"/home/zack/Desktop/GivingPledge/js/src/containers/GivingPageContainer.jsx",
-		"/home/zack/Desktop/GivingPledge/js/src/gulpfile.js",
-		"/home/zack/Desktop/GivingPledge/js/src/actions/index.js",
-		"/home/zack/Desktop/GivingPledge/css/src/tile-grid.less",
-		"/home/zack/Desktop/GivingPledge/css/src/nav-layout.less",
-		"/home/zack/Desktop/GivingPledge/js/src/components/AreaTile.jsx"
+		"/home/zack/Projects/GivingPledge/js/src/components/TileGrid.jsx"
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 27.0
 	},
 	"find_in_files":
 	{
@@ -371,6 +353,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			";",
+			"validPlugin",
 			"toolbar",
 			"Toolbar",
 			"to$",
@@ -496,9 +480,7 @@
 			"HomePage",
 			"component",
 			"Component",
-			"component",
-			"Component",
-			"this"
+			"component"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -517,118 +499,119 @@
 	"groups":
 	[
 		{
-			"selected": 9,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/components/App.jsx",
+					"file": "app/main.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2292,
+						"buffer_size": 5705,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1138,
-								1138
+								5411,
+								5411
 							]
 						],
 						"settings":
 						{
-							"is_xml": false,
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 972.0,
+						"translation.y": 757.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "src/index.jsx",
+					"file": "app/plugins/givingpledge_state.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 821,
+						"buffer_size": 427,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								643,
-								643
+								420,
+								420
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/containers/AppContainer.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1416,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1416,
+								1416
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 342.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "src/style/double-transform.less",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 257,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								257,
-								257
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
 					"buffer": 3,
-					"file": "src/style/base.less",
+					"file": "src/actions/index.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 149,
+						"buffer_size": 1249,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								105,
-								105
+								708,
+								708
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -636,87 +619,31 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "src/style/app-layout.less",
+					"file": "src/initialState.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 171,
+						"buffer_size": 208,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								69,
-								69
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "src/style/tool-bar.less",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 135,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								98,
-								98
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "src/style/tool-button.less",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 500,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								500,
-								500
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -726,51 +653,50 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "app/index.html",
+					"buffer": 5,
+					"file": "src/components/App.jsx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 753,
+						"buffer_size": 3021,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								371,
-								371
+								2160,
+								2165
 							]
 						],
 						"settings":
 						{
-							"is_xml": false,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 313.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "app/main.js",
+					"buffer": 6,
+					"file": "src/components/TransformView.jsx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2238,
+						"buffer_size": 1291,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								787,
-								787
+								220,
+								220
 							]
 						],
 						"settings":
@@ -783,35 +709,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "app/style/preload.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 304,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								281,
-								281
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -819,7 +717,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 26.0
+		"height": 27.0
 	},
 	"input":
 	{
@@ -864,7 +762,7 @@
 	"project": "transformy.sublime-project",
 	"replace":
 	{
-		"height": 48.0
+		"height": 50.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -874,12 +772,48 @@
 		"selected_items":
 		[
 			[
-				"index",
-				"app/index.html"
+				"actions",
+				"src\\actions\\index.js"
+			],
+			[
+				"init",
+				"src\\initialState.js"
+			],
+			[
+				"transformview",
+				"src\\components\\TransformView.jsx"
+			],
+			[
+				"app.jsx",
+				"src\\components\\App.jsx"
+			],
+			[
+				"appcon",
+				"src\\containers\\AppContainer.jsx"
 			],
 			[
 				"main",
-				"app/main.js"
+				"app\\main.js"
+			],
+			[
+				"csv_",
+				"app\\plugins\\csv_with_headers.js"
+			],
+			[
+				"pack",
+				"app\\package.json"
+			],
+			[
+				"templ",
+				"app\\template.js"
+			],
+			[
+				"transform-view",
+				"src\\style\\transform-view.less"
+			],
+			[
+				"index",
+				"app/index.html"
 			],
 			[
 				"we",
@@ -902,20 +836,8 @@
 				"src/components/App.jsx"
 			],
 			[
-				"transformview",
-				"src/components/TransformView.jsx"
-			],
-			[
 				"gitig",
 				".gitignore"
-			],
-			[
-				"pack",
-				"app/package.json"
-			],
-			[
-				"actions",
-				"src/actions/index.js"
 			],
 			[
 				"reducer",
@@ -1142,10 +1064,6 @@
 				"js/src/components/AreaDetailPane.jsx"
 			],
 			[
-				"init",
-				"js/src/initialState.js"
-			],
-			[
 				"areadetai",
 				"js/src/components/AreaDetailPane.jsx"
 			],
@@ -1364,26 +1282,6 @@
 			[
 				"adminlayou",
 				"js/src/components/AdminLayout.jsx"
-			],
-			[
-				"admin-l",
-				"css/reference/admin-layout.less"
-			],
-			[
-				"memberlist",
-				"js/src/components/MemberList.jsx"
-			],
-			[
-				"topicpage",
-				"js/src/components/TopicPage.jsx"
-			],
-			[
-				"testutils",
-				"test/testUtils.js"
-			],
-			[
-				"pakc",
-				"package.json"
 			]
 		],
 		"width": 0.0
@@ -1394,6 +1292,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"",
+				"C:\\TFS\\GPAG_Event\\GPAG_App\\gpag.sublime-project"
+			]
 		],
 		"width": 380.0
 	},
@@ -1414,7 +1316,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 206.0,
+	"side_bar_width": 175.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

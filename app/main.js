@@ -10,8 +10,6 @@ const shell = electron.shell;
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
-console.log(app.getAppPath());
-
 let mainWindow;
 
 function createWindow () {
@@ -58,17 +56,11 @@ function transform(fromType, toType, data) {
   return new Promise((resolve, reject) => {
     loadPlugin(fromType)
       .then((inputLoader) => {
-        if (inputLoader[`to_${toType}`]) {
-          return inputLoader[`to_${toType}`](data);
+        let f = inputLoader.outputs.find((output) => output.type === toType);
+        if (f.transform) {
+          return f.transform(data);
         } else {
-          let outputLoader;
-          return loadPlugin(toType)
-            .then((loader) => {
-              outputLoader = loader;
-              return inputLoader.deserialize(data);
-            })
-            .then((data) => outputLoader.serialize(data))
-            .catch((error) => reject(error));
+          throw new Error(`Can\'t convert to ${toType}`);
         }
       })
       .then((output) => resolve(output))
@@ -100,7 +92,7 @@ ipcMain.on('addplugin', (event) => {
   const plugin = require(sourceFile);
 
   if (!validPlugin(plugin)) {
-    event.sender.send('addplugin_error', new Error('Invalid plugin'));
+    event.sender.send('addplugin_error', 'Invalid plugin');
     return;
   }
 
@@ -118,7 +110,7 @@ ipcMain.on('addplugin', (event) => {
 
 ipcMain.on('createplugin', (event) => {
   const appFolder = (process.env.ENV === 'development')
-    ? path.resolve('./')
+    ? path.resolve('./app')
     : app.getAppPath();
   const pluginFolder = getPluginFolder();
 
@@ -149,13 +141,20 @@ ipcMain.on('createplugin', (event) => {
 
 function validPlugin(plugin) {
   if (!plugin.name) return false;
-  if (!plugin.outputTypes) return false;
-  if (!Array.isArray(plugin.outputTypes)) return false;
-  const validOutputs = plugin.outputTypes.filter((type) =>
-    plugin.hasOwnProperty(`to_${type.type}`));
+  if (!plugin.outputs) return false;
+  if (!Array.isArray(plugin.outputs)) return false;
+  const validOutputs = getValidOutputs(plugin.outputs);
   if (validOutputs.length === 0) return false;
-
   return true;
+}
+
+function getValidOutputs(outputs) {
+  return outputs.filter((output) => {
+    return output.hasOwnProperty('name')
+      && output.hasOwnProperty('type')
+      && output.hasOwnProperty('transform')
+      && typeof(output.transform === 'function');
+  });
 }
 
 function copyFile(source, dest) {
@@ -175,6 +174,9 @@ ipcMain.on('getplugins', (event) => {
   loadPlugins(pluginFolder)
     .then((plugins) => {
       event.sender.send('getplugins', plugins);
+    })
+    .catch((error) => {
+      console.error(error);
     });
 });
 
@@ -188,13 +190,12 @@ function loadPlugins(pluginFolder) {
         if (path.extname(file) !== '.js') return;
 
         const plugin = require(`${pluginFolder}/${file}`);
-        if (!plugin.outputTypes) return;
+        if (!plugin.outputs) return;
 
         plugins.push({
           name: plugin.name || path.basename(file, '.js'),
           type: path.basename(file, '.js'),
-          outputTypes: plugin.outputTypes.filter((type) =>
-            plugin.hasOwnProperty(`to_${type.type}`))
+          outputs: getValidOutputs(plugin.outputs)
         });
       });
       resolve(plugins);
@@ -204,7 +205,7 @@ function loadPlugins(pluginFolder) {
 
 function getPluginFolder(user) {
   return (process.env.ENV === 'development')
-    ? path.resolve('./plugins')
+    ? path.resolve('./app/plugins')
     : user
       ? app.getPath('userData') + path.sep + 'plugins'
       : app.getAppPath() + path.sep + 'plugins';

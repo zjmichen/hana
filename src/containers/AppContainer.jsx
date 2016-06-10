@@ -6,7 +6,9 @@ import { ipcRenderer as ipc } from 'electron';
 const mapStateToProps = (state) => {
   const inputPlugin = state.plugins.find(
     (plugin) => plugin.type === state.input.type);
-  const outputTypes = (inputPlugin) ? inputPlugin.outputTypes : [];
+  const outputTypes = (inputPlugin) 
+    ? inputPlugin.outputs
+    : [];
 
   return {
     input: state.input,
@@ -25,13 +27,16 @@ const mapDispatchToProps = (dispatch) => {
     setOutputType: (type) => dispatch(setOutputType(type)),
     addPlugin: () => {
       ipc.on('addplugin', (event, plugin) => {
+        console.log('plugin');
         dispatch(addPlugin(plugin));
+      });
+      ipc.on('addplugin_error', (event, error) => {
+        console.log(error);
       });
       ipc.send('addplugin');
     },
     createPlugin: () => {
       ipc.on('createplugin', (event, plugin) => {
-        console.log(plugin);
         dispatch(addPlugin(plugin));
       });
       ipc.send('createplugin');

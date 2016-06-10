@@ -76,7 +76,6 @@ class App extends React.Component {
           <TransformView title='Before'
             content={this.props.input}
             types={this.props.plugins}
-            errorMsg={this.props.errorMsg}
             onChange={this.updateInput}
             setType={this.props.setInputType} />
 
@@ -86,6 +85,7 @@ class App extends React.Component {
           <TransformView title='After'
             content={this.props.output}
             types={this.props.outputTypes}
+            errorMsg={this.props.errorMsg}
             setType={this.props.setOutputType} />
 
         </div>

@@ -8,25 +8,26 @@ module.exports = {
   /* name of input data format */
   name: 'Example Text',
 
-  /* name and type of possible outputs, one per transformation function
-   * `type: 'x'` must map to a `to_x` transformation function
+  /* output transformations
    */
-  outputTypes: [
-    { name: 'Empty JSON', type: 'empty_json' }
-  ],
+  outputs: [
+    { 
+      name: 'Empty JSON', 
+      type: 'empty_json',
+      transform: (inputText) => {
+        /* transform functions must return a promise
+         * more info on promises: <http://l.zjm.me/l/doG>
+         */
+        return new Promise((resolve, reject) => {
+          /* pass an error to `reject` if the input can't be transformed */
+          if (inputText === 'this will be rejected') reject(new Error('Invalid input'));
 
-  /* one of possibly many transformation functions */
-  to_empty_json: (inputText) => {
+          /* pass a string to `resolve` to return the output text */
+          resolve(JSON.stringify({}));
 
-    /* transform functions must return a promise */
-    return new Promise((resolve, reject) => {
-
-      /* pass an error to `reject` if the input can't be transformed */
-      if (inputText === 'this will be rejected') reject(new Error('Invalid input'));
-
-      /* pass a string to `resolve` to return the output text */
-      resolve(JSON.stringify({}));
-    });
-  }
+        });
+      }
+    }
+  ]
 
 };

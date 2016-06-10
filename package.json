@@ -8,7 +8,7 @@
     "lint": "eslint . --ext=js --ext=jsx",
     "dev:app": "cross-env ENV=development electron ./app",
     "dev:server": "babel-node server.js",
-    "start": "concurrently -k \"npm run -s dev:server\" \"npm run -s dev:app\"",
+    "start": "concurrently -k \"npm run dev:server\" \"npm run dev:app\"",
     "postinstall": "install-app-deps",
     "prepack": "webpack --config webpack.config.production.js",
     "pack": "build --target dir",
