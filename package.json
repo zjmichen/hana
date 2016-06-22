@@ -41,6 +41,7 @@
     "electron-complete-builder": "^0.7.0",
     "electron-packager": "^7.0.3",
     "electron-prebuilt": "^1.2.0",
+    "electron-squirrel-startup": "^1.0.0",
     "eslint": "^2.11.1",
     "eslint-plugin-react": "^5.1.1",
     "express": "^4.13.4",

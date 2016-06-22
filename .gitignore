@@ -2,3 +2,4 @@ node_modules
 dist
 app/app.js
 app/app.js.map
+*sublime*

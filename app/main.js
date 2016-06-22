@@ -10,6 +10,8 @@ const shell = electron.shell;
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
+if (require('electron-squirrel-startup')) return;
+
 let mainWindow;
 
 function createWindow () {

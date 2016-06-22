@@ -13,12 +13,17 @@
   "dependencies": {
     "csv": "^1.1.0",
     "debounce": "^1.0.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "marked": "^0.3.5",
     "watch": "^0.18.0"
   },
   "build": {
     "app-bundle-id": "com.zackmichener.hana",
     "app-category-type": "public.app-category.utilities",
     "win": {
+      "title": "Hana",
+      "version": "1.0.0",
+      "publisher": "Zack Michener",
       "iconUrl": "https://github.com/${u}/${p}/blob/master/build/icon.ico?raw=true"
     },
     "compression": "store",
